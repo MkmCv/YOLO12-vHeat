@@ -64,7 +64,7 @@ pip install torch==2.1.0 torchvision==0.16.0
 
 ```bash
 # 进入项目目录
-cd yolov12-vheat
+cd YOLO-vHeat
 
 # 安装项目（推荐）
 pip install -e .
@@ -589,9 +589,9 @@ python train.py \
 
 ## 📚 相关文档
 
-- [vHeat 集成文档](vHeat_Integration_Documentation.md) - vHeat 集成详细说明
-- [迁移指南](MIGRATION_GUIDE.md) - 从旧仓库迁移的指南
-- [环境检查脚本](check_environment.py) - 环境配置检查工具
+- [vHeat 集成文档](vheat-integration.md) - vHeat 集成详细说明
+- [项目说明](../README.md) - 返回项目首页
+- 环境检查脚本：`../check_environment.py`
 
 ---
 

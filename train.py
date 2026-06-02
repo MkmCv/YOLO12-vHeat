@@ -5,13 +5,13 @@ import os
 
 def parse_args():
     parser = argparse.ArgumentParser(description="YOLOv12 Train/Resume Helper")
-    parser.add_argument("--data", type=str, default=r"H:/毕业设计/嵌合/SCB5_Teacher_Behavior_Stand_BlackBoard_Sreen_20250406-2/SCB5_Teacher_Behavior_Stand_BlackBoard_Sreen_20250406.yaml")
+    parser.add_argument("--data", type=str, required=True, help="数据集 YAML 文件路径")
     parser.add_argument("--model", type=str, default=os.path.join("ultralytics", "cfg", "models", "v12", "yolov12.yaml"))
     parser.add_argument("--epochs", type=int, default=300)
     parser.add_argument("--batch", type=int, default=16)
     parser.add_argument("--imgsz", type=int, default=640)
-    parser.add_argument("--project", type=str, default=os.path.join("runs", "train_vheat"))
-    parser.add_argument("--name", type=str, default="scb5_vheat_py")
+    parser.add_argument("--project", type=str, default=os.path.join("runs", "train"))
+    parser.add_argument("--name", type=str, default="vheat")
     parser.add_argument("--device", type=str, default="0")
     parser.add_argument("--workers", type=int, default=8)
     parser.add_argument("--cache", type=str, default="False")  # 'ram' / 'disk' / 'False'

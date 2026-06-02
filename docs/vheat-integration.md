@@ -12,7 +12,7 @@
 
 ### 1.1 核心模块定义位置
 
-**文件路径：** `yolov12/yolov12/ultralytics/nn/modules/block.py`
+**文件路径：** `ultralytics/nn/modules/block.py`
 
 #### 1.1.1 `FrequencyValueEmbedding` (第 84-99 行)
 - **作用：** 可学习的频率嵌入，支持任意空间分辨率的插值
@@ -53,7 +53,7 @@
 
 ### 1.2 模块导出位置
 
-**文件路径：** `yolov12/yolov12/ultralytics/nn/modules/__init__.py`
+**文件路径：** `ultralytics/nn/modules/__init__.py`
 
 **导出内容（第 20-66 行）：**
 ```python
@@ -78,7 +78,7 @@ from .block import (
 
 ### 2.1 改动 1：在 `tasks.py` 中导入 `C2fHeat`
 
-**文件路径：** `yolov12/yolov12/ultralytics/nn/tasks.py`
+**文件路径：** `ultralytics/nn/tasks.py`
 
 **位置：** 第 14-69 行的导入语句
 
@@ -103,7 +103,7 @@ from ultralytics.nn.modules import (
 
 ### 2.2 改动 2：在 `parse_model` 中注册 `C2fHeat`
 
-**文件路径：** `yolov12/yolov12/ultralytics/nn/tasks.py`
+**文件路径：** `ultralytics/nn/tasks.py`
 
 **位置 1：** 第 966-1002 行 - 模块分类集合（处理通道和宽度缩放）
 
@@ -146,7 +146,7 @@ if m in {
 
 ### 2.3 改动 3：为 `HeatBottleneck` 添加 `time_step` 参数
 
-**文件路径：** `yolov12/yolov12/ultralytics/nn/modules/block.py`
+**文件路径：** `ultralytics/nn/modules/block.py`
 
 **位置：** 第 204 行
 
@@ -169,7 +169,7 @@ def __init__(self, c1, c2, shortcut=True, expansion=0.5, base_size=40, time_step
 
 ### 2.4 改动 4：为 `C2fHeat` 添加 `time_step` 参数
 
-**文件路径：** `yolov12/yolov12/ultralytics/nn/modules/block.py`
+**文件路径：** `ultralytics/nn/modules/block.py`
 
 **位置：** 第 225 行
 
@@ -194,7 +194,7 @@ def __init__(self, c1, c2, n=1, shortcut=False, g=1, time_step=1.0, e=0.5, base_
 
 ### 2.5 改动 5：增强训练脚本支持续训
 
-**文件路径：** `yolov12/yolov12/train.py`
+**文件路径：** `train.py`
 
 **改动内容：**
 - 重写为 argparse 版本，支持命令行参数
@@ -215,7 +215,7 @@ def __init__(self, c1, c2, n=1, shortcut=False, g=1, time_step=1.0, e=0.5, base_
 
 ### 3.1 模型配置文件
 
-**文件路径：** `yolov12/yolov12/ultralytics/cfg/models/v12/yolov12.yaml`
+**文件路径：** `ultralytics/cfg/models/v12/yolov12.yaml`
 
 **vHeat 使用情况：**
 - **Backbone（第 23, 25, 27 行）：** 使用 `C2fHeat` 替代标准 `C2f`
@@ -276,13 +276,13 @@ def __init__(self, c1, c2, n=1, shortcut=False, g=1, time_step=1.0, e=0.5, base_
 ```bash
 # 基础训练
 yolo detect train \
-  data="H:/毕业设计/嵌合/SCB5_Teacher_Behavior_Stand_BlackBoard_Sreen_20250406-2/SCB5_Teacher_Behavior_Stand_BlackBoard_Sreen_20250406.yaml" \
+  data="path/to/dataset.yaml" \
   model="ultralytics/cfg/models/v12/yolov12.yaml" \
   imgsz=640 epochs=300 batch=16 device=0
 
 # 使用 Python 脚本
-python yolov12/yolov12/train.py \
-  --data "H:/.../SCB5_...yaml" \
+python train.py \
+  --data "path/to/dataset.yaml" \
   --model "ultralytics/cfg/models/v12/yolov12.yaml" \
   --epochs 300 --batch 16 --device 0
 ```
@@ -295,7 +295,7 @@ yolo detect train resume=True device=0
 
 # 指定权重续训
 yolo detect train \
-  model="runs/train_vheat/scb5_vheat2/weights/last.pt" \
+  model="runs/train/vheat/weights/last.pt" \
   resume=True device=0
 ```
 
@@ -321,15 +321,15 @@ yolo detect train \
 ## 七、文件清单
 
 ### 核心实现文件
-- `yolov12/yolov12/ultralytics/nn/modules/block.py` - vHeat 核心模块实现
-- `yolov12/yolov12/ultralytics/nn/modules/__init__.py` - 模块导出
+- `ultralytics/nn/modules/block.py` - vHeat 核心模块实现
+- `ultralytics/nn/modules/__init__.py` - 模块导出
 
 ### 集成文件
-- `yolov12/yolov12/ultralytics/nn/tasks.py` - 模型构建与模块注册
-- `yolov12/yolov12/ultralytics/cfg/models/v12/yolov12.yaml` - 模型配置
+- `ultralytics/nn/tasks.py` - 模型构建与模块注册
+- `ultralytics/cfg/models/v12/yolov12.yaml` - 模型配置
 
 ### 工具文件
-- `yolov12/yolov12/train.py` - 训练/续训脚本
+- `train.py` - 训练/续训脚本
 
 ---
 
